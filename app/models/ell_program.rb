@@ -1,3 +1,3 @@
 class EllProgram < ApplicationRecord
-  has_many :ses
+  has_many :ses, :dependent => :destroy
 end

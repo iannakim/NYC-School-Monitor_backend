@@ -1,3 +1,3 @@
 class LangClass < ApplicationRecord
-  has_many :sls
+  has_many :sls, :dependent => :destroy
 end

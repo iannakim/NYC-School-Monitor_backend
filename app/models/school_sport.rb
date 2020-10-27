@@ -1,3 +1,3 @@
 class SchoolSport < ApplicationRecord
-  has_many :sses
+  has_many :sses, :dependent => :destroy
 end
