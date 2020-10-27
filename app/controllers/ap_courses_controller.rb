@@ -1,0 +1,2 @@
+class ApCoursesController < ApplicationController
+end

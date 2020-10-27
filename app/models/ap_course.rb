@@ -1,0 +1,2 @@
+class ApCourse < ApplicationRecord
+end

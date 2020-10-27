@@ -1,0 +1,2 @@
+class SchoolSport < ApplicationRecord
+end

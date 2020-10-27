@@ -1,0 +1,2 @@
+class SlsController < ApplicationController
+end

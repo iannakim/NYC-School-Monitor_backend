@@ -1,0 +1,2 @@
+class EllProgram < ApplicationRecord
+end

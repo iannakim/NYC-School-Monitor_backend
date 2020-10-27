@@ -1,0 +1,2 @@
+class SesController < ApplicationController
+end

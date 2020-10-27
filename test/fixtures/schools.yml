@@ -1,0 +1,51 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  nameme: MyString
+  address: MyString
+  city: MyString
+  zip: MyString
+  state: MyString
+  grades: MyString
+  overview: MyString
+  start_time: MyString
+  end_time: MyString
+  phone: MyString
+  email: MyString
+  website: MyString
+  subway: MyString
+  bus: MyString
+  shared_space: MyString
+  accessibility: 1
+  total_students: 1
+  graduation_rate: 1
+  attendance_rate: 1
+  extracurricular: MyString
+  longitude: 1.5
+  latitude: 1.5
+  Neighborhood: one
+
+two:
+  nameme: MyString
+  address: MyString
+  city: MyString
+  zip: MyString
+  state: MyString
+  grades: MyString
+  overview: MyString
+  start_time: MyString
+  end_time: MyString
+  phone: MyString
+  email: MyString
+  website: MyString
+  subway: MyString
+  bus: MyString
+  shared_space: MyString
+  accessibility: 1
+  total_students: 1
+  graduation_rate: 1
+  attendance_rate: 1
+  extracurricular: MyString
+  longitude: 1.5
+  latitude: 1.5
+  Neighborhood: two

@@ -1,0 +1,2 @@
+class EllProgramsController < ApplicationController
+end
