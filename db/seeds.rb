@@ -27,8 +27,28 @@ School.reset_pk_sequence
 Neighborhood.reset_pk_sequence
 Borough.reset_pk_sequence
 
-queens = Borough.create!(name: "Queens")
-brooklyn = Borough.create!(name: "Brooklyn")
-bronx = Borough.create!(name: "Bronx")
-manhattan = Borough.create!(name: "Manhattan")
-staten = Borough.create!(name: "Staten Island")
+boroughs = {}
+boroughlist = ["Queens", "Brooklyn", "Bronx", "Manhattan", "Staten Island"]
+
+boroughlist.each do |b|
+  newboro = Borough.create!(name: b)
+  
+  boroughs[b] = newboro.id
+end
+
+puts boroughs
+
+
+
+
+
+
+
+
+
+# queens = Borough.create!(name: "Queens")
+# brooklyn = Borough.create!(name: "Brooklyn")
+# bronx = Borough.create!(name: "Bronx")
+# manhattan = Borough.create!(name: "Manhattan")
+# staten = Borough.create!(name: "Staten Island")
+
