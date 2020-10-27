@@ -1,4 +1,4 @@
 class Ss < ApplicationRecord
-  belongs_to :School
-  belongs_to :SchoolSport
+  belongs_to :school
+  belongs_to :school_sport
 end

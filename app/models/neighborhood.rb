@@ -1,3 +1,4 @@
 class Neighborhood < ApplicationRecord
-  belongs_to :Borough
+  has_many :schools
+  belongs_to :borough
 end

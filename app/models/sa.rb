@@ -1,4 +1,4 @@
 class Sa < ApplicationRecord
-  belongs_to :School
-  belongs_to :ApCourse
+  belongs_to :school
+  belongs_to :ap_course
 end

@@ -1,5 +1,5 @@
 class SsSerializer < ActiveModel::Serializer
   attributes :id
-  has_one :School
-  has_one :SchoolSport
+  has_one :school
+  has_one :school_sport
 end

@@ -1,4 +1,4 @@
 class Sl < ApplicationRecord
-  belongs_to :School
-  belongs_to :LangClass
+  belongs_to :school
+  belongs_to :lang_class
 end

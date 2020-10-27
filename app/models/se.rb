@@ -1,4 +1,4 @@
 class Se < ApplicationRecord
-  belongs_to :School
-  belongs_to :EllProgram
+  belongs_to :school
+  belongs_to :ell_program
 end
