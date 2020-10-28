@@ -16,18 +16,19 @@ School.reset_pk_sequence
 Neighborhood.reset_pk_sequence
 Borough.reset_pk_sequence
 
-
+# ------------------ Turn Obj into a workable hash -------------------------------------
 url = "https://data.cityofnewyork.us/resource/23z9-6uk9.json"
 restClientResponseObject = RestClient.get(url)
 jsonButItsAString = restClientResponseObject.body
 schools_hash = JSON.parse(jsonButItsAString)
 
-# ------------------ Seeding Borough ---------------------
+
+
+# ------------------ Seeding Borough ---------------------------------------------------
 borough_hash = {}
 neighborhood_hash = {}
 boroughlist = []
 neighborhood_borough = {}
-
 
 ##for each school, push the borough into the boroughlist array
 ##for each school, create a key/value inside neighborhood_borough hash
@@ -68,7 +69,7 @@ puts neighborhood_hash
 
 
 
-# ------------------ Seeding Program ---------------------
+# ------------------ Seeding Program ----------------------------------------------
 program_hash = {}
 option_hash = {}
 option_program_hash = {}
@@ -81,28 +82,47 @@ programlist.uniq.each do |pro|
 end
 puts program_hash
 
-# schools_hash.each do |school|
-#   option_program_hash[programlist[0] = 
-#   option_program_hash[school["neighborhood"]] = school["borough"]
-# end
-
-schools_hash.each do |school|
-  if school["ell_programs"] != ""
-  if school["ell_programs"].include?(";") 
-    school["ell_programs"].split('; ').each{|t| Option.create!(program_id: Program.find_by(name: "ell_programs").id, name: t)
-      puts "- created Option #{t}"}
-  else
-      Option.create!(program_id: Program.find_by(name: "ell_programs").id, name: school["ell_programs"])
-      puts "- created Option #{school["ell_programs"]}"
-  end
-  
-end
-
-
-
 
 
 # ------------------ Seeding Option (that belongs to a Program) ---------------------
+
+schools_hash.each do |school|
+  if school["ell_programs"] != ""
+    if school["ell_programs"].include?(";") 
+      school["ell_programs"].split('; ').each{|t| 
+        if !Option.find_by(name: t)
+          Option.create!(program_id: Program.find_by(name: "ell_programs").id, name: t)
+          puts "- created Option #{t}"
+        end
+      }
+    else
+      if !Option.find_by(name: school["ell_programs"])
+        Option.create!(program_id: Program.find_by(name: "ell_programs").id, name: school["ell_programs"])
+        puts "- created Option #{school["ell_programs"]}"
+      end
+    end
+  end
+end
+
+
+  schools_hash.each do |school|
+    if school.has_key? "advancedplacement_courses"
+      if school["advancedplacement_courses"].include?(",") 
+        school["advancedplacement_courses"].split(', ').each{|t| 
+          if !Option.find_by(name: t)
+            Option.create!(program_id: Program.find_by(name: "advancedplacement_courses").id, name: t)
+            puts "- created Option #{t}"
+          end
+        }
+      else
+        if !Option.find_by(name: school["advancedplacement_courses"])
+          Option.create!(program_id: Program.find_by(name: "advancedplacement_courses").id, name: school["advancedplacement_courses"])
+          puts "- created Option #{school["advancedplacement_courses"]}"
+        end
+      end
+    end
+  end
+
 
 
 
