@@ -1,2 +1,0 @@
-class SlsController < ApplicationController
-end

@@ -1,2 +1,0 @@
-class SasController < ApplicationController
-end

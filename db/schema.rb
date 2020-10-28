@@ -10,16 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_27_190120) do
+ActiveRecord::Schema.define(version: 2020_10_28_185647) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-
-  create_table "ap_courses", force: :cascade do |t|
-    t.string "name"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
 
   create_table "boroughs", force: :cascade do |t|
     t.string "name"
@@ -27,16 +21,13 @@ ActiveRecord::Schema.define(version: 2020_10_27_190120) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "ell_programs", force: :cascade do |t|
-    t.string "name"
+  create_table "joiners", force: :cascade do |t|
+    t.bigint "school_id", null: false
+    t.bigint "option_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-  end
-
-  create_table "lang_classes", force: :cascade do |t|
-    t.string "name"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.index ["option_id"], name: "index_joiners_on_option_id"
+    t.index ["school_id"], name: "index_joiners_on_school_id"
   end
 
   create_table "neighborhoods", force: :cascade do |t|
@@ -47,6 +38,20 @@ ActiveRecord::Schema.define(version: 2020_10_27_190120) do
     t.index ["borough_id"], name: "index_neighborhoods_on_borough_id"
   end
 
+  create_table "options", force: :cascade do |t|
+    t.string "name"
+    t.bigint "program_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["program_id"], name: "index_options_on_program_id"
+  end
+
+  create_table "programs", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "reviews", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.bigint "school_id", null: false
@@ -55,21 +60,6 @@ ActiveRecord::Schema.define(version: 2020_10_27_190120) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["school_id"], name: "index_reviews_on_school_id"
     t.index ["user_id"], name: "index_reviews_on_user_id"
-  end
-
-  create_table "sas", force: :cascade do |t|
-    t.bigint "school_id", null: false
-    t.bigint "ap_course_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["ap_course_id"], name: "index_sas_on_ap_course_id"
-    t.index ["school_id"], name: "index_sas_on_school_id"
-  end
-
-  create_table "school_sports", force: :cascade do |t|
-    t.string "name"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "schools", force: :cascade do |t|
@@ -101,33 +91,6 @@ ActiveRecord::Schema.define(version: 2020_10_27_190120) do
     t.index ["neighborhood_id"], name: "index_schools_on_neighborhood_id"
   end
 
-  create_table "ses", force: :cascade do |t|
-    t.bigint "school_id", null: false
-    t.bigint "ell_program_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["ell_program_id"], name: "index_ses_on_ell_program_id"
-    t.index ["school_id"], name: "index_ses_on_school_id"
-  end
-
-  create_table "sls", force: :cascade do |t|
-    t.bigint "school_id", null: false
-    t.bigint "lang_class_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["lang_class_id"], name: "index_sls_on_lang_class_id"
-    t.index ["school_id"], name: "index_sls_on_school_id"
-  end
-
-  create_table "sses", force: :cascade do |t|
-    t.bigint "school_id", null: false
-    t.bigint "school_sport_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["school_id"], name: "index_sses_on_school_id"
-    t.index ["school_sport_id"], name: "index_sses_on_school_sport_id"
-  end
-
   create_table "users", force: :cascade do |t|
     t.string "username"
     t.string "password_digest"
@@ -137,16 +100,11 @@ ActiveRecord::Schema.define(version: 2020_10_27_190120) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  add_foreign_key "joiners", "options"
+  add_foreign_key "joiners", "schools"
   add_foreign_key "neighborhoods", "boroughs"
+  add_foreign_key "options", "programs"
   add_foreign_key "reviews", "schools"
   add_foreign_key "reviews", "users"
-  add_foreign_key "sas", "ap_courses"
-  add_foreign_key "sas", "schools"
   add_foreign_key "schools", "neighborhoods"
-  add_foreign_key "ses", "ell_programs"
-  add_foreign_key "ses", "schools"
-  add_foreign_key "sls", "lang_classes"
-  add_foreign_key "sls", "schools"
-  add_foreign_key "sses", "school_sports"
-  add_foreign_key "sses", "schools"
 end

@@ -1,2 +1,0 @@
-class SsesController < ApplicationController
-end
