@@ -1,4 +1,4 @@
 class Joiner < ApplicationRecord
-  belongs_to :School
-  belongs_to :Option
+  belongs_to :school
+  belongs_to :option
 end

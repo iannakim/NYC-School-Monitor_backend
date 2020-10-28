@@ -1,4 +1,4 @@
 class Option < ApplicationRecord
-  belongs_to :Program
+  belongs_to :program
   has_many :joiners, :dependent => :destroy
 end
