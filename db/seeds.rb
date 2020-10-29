@@ -74,7 +74,7 @@ program_hash = {}
 option_hash = {}
 option_program_hash = {}
 
-programlist = ["ell_programs", "school_sports", "advancedplacement_courses", "language_classes"]
+programlist = ["ell_programs", "advancedplacement_courses", "language_classes"]
 
 programlist.uniq.each do |pro|
   newpro = Program.create!(name: pro)
@@ -84,7 +84,7 @@ puts program_hash
 
 
 
-# ------------------ Seeding Option (that belongs to a Program) ---------------------
+# ------------------ Seeding Option (that belongs to a specific program) ---------------------
 
 schools_hash.each do |school|
   if school["ell_programs"] != ""
@@ -124,23 +124,84 @@ end
   end
 
 
+  schools_hash.each do |school|
+    if school.has_key? "language_classes"
+      if school["language_classes"].include?(",") 
+        school["language_classes"].split(', ').each{|t| 
+          if !Option.find_by(name: t)
+            Option.create!(program_id: Program.find_by(name: "language_classes").id, name: t)
+            puts "- created Option #{t}"
+          end
+        }
+      else
+        if !Option.find_by(name: school["language_classes"])
+          Option.create!(program_id: Program.find_by(name: "language_classes").id, name: school["language_classes"])
+          puts "- created Option #{school["language_classes"]}"
+        end
+      end
+    end
+  end
+
+
+# ------------------- Seeding School -------------------------------------------------
+
+schools_hash.each do |school|
+
+  if !school["school_accessibility_description"]
+    school["school_accessibility_description"] = 0
+  end
+
+  if  !school["attendance_rate"]
+    school["attendance_rate"] = 0.0
+  end
+  
+  if !school["extracurricular activities"]
+  school["extracurricular_activities"] = "Information not available at this time. Please check the school website."
+  end
+
+  School.create!(
+    neighborhood_id: Neighborhood.find_by(name: school["neighborhood"]).id,
+    name: school["school_name"],
+    address: school["primary_address_line_1"],
+    city: school["city"],
+    state: school["state_code"],
+    zipcode: school["zip"],
+    grades: school["finalgrades"],
+    overview: school["overview_paragraph"],
+    start_time: school["start_time"],
+    end_time: school["end_time"],
+    phone: school["phone_number"],
+    email: school["school_email"],
+    website: school["website"],
+    subway: school["subway"],
+    bus: school["bus"],
+    shared_space: school["shared_space"],
+    accessibility: school["school_accessibility_description"],
+    total_students: school["total_students"],
+    graduation_rate: school["graduation_rate"],
+    attendance_rate: school["attendance_rate"],
+    extracurricular: school["extracurricular_activities"],
+    longitude: school["longitude"],
+    latitude: school["latitude"]
+  )
+  puts "- created #{school["school_name"]}"
+end
+
+# ------------------- Seeding Joiner -------------------------------------------------
+
+schools_hash.
+
+
+
+# ------------------- Seeding User -------------------------------------------------
+
+
+anna = User.create!(username: "master", password: "abc123", email: "anna@gmail.com", role: "admin")
+cooper = User.create!(username:"cooper", password: "abc123", email: "cooper@gmail.com", role: "student")
+kevin = User.create!(username: "kevin", password: "abc123", email: "kevin@gmail.com", role: "parent")
 
 
 
 
 
-
-
-
-
-# queens = Borough.create!(name: "Queens")
-# brooklyn = Borough.create!(name: "Brooklyn")
-# bronx = Borough.create!(name: "Bronx")
-# manhattan = Borough.create!(name: "Manhattan")
-# staten = Borough.create!(name: "Staten Island")
-
-
-
-
-
-puts "🌵🥯 YAY!! 🌵🥯 "
+puts "🌵🥯🌵🥯 YAY!! 🌵🥯🌵🥯 "
