@@ -147,16 +147,34 @@ end
 
 schools_hash.each do |school|
 
-  if !school["school_accessibility_description"]
-    school["school_accessibility_description"] = 0
+  if !school["graduation_rate"]
+    school["graduation_rate"] = "NA"
   end
 
   if !school["attendance_rate"]
-    school["attendance_rate"] = 0.0
+    school["attendance_rate"] = "NA"
   end
   
+  if !school["shared_space"]
+    school["shared_space"] = "Information not available at this time. Please contact the school for more information"
+  end
+#--------------------------edge case
   if !school["extracurricular_activities"]
-    school["extracurricular_activities"] = "Information not available at this time. Please check the school website."
+    extra = "NA. Please contact the school for more information"
+  else
+    extra = school["extracurricular_activities"]
+  end
+#--------------------------edge case
+  if !school["language_classes"]    
+    lang = "NA. Please contact the school for more information"
+  else
+    lang = school["language_classes"] 
+  end
+#--------------------------edge case
+  if !school["advancedplacement_courses"]
+    ap = "No Advanced Placement courses are offered at this school"
+  else
+    ap = school["advancedplacement_courses"] 
   end
 
   s = School.create!(
@@ -165,7 +183,7 @@ schools_hash.each do |school|
     address: school["primary_address_line_1"],
     city: school["city"],
     state: school["state_code"],
-    zipcode: school["zip"],
+    zipcode: school["postcode"],
     grades: school["finalgrades"],
     overview: school["overview_paragraph"],
     start_time: school["start_time"],
@@ -176,11 +194,14 @@ schools_hash.each do |school|
     subway: school["subway"],
     bus: school["bus"],
     shared_space: school["shared_space"],
-    accessibility: school["school_accessibility_description"],
+    accessibility: school["school_accessibility"],
     total_students: school["total_students"],
     graduation_rate: school["graduation_rate"],
     attendance_rate: school["attendance_rate"],
-    extracurricular: school["extracurricular_activities"],
+    extracurricular: extra,
+    langclasses: lang,
+    ellprograms: school["ell_programs"],
+    apcourses: ap,
     longitude: school["longitude"],
     latitude: school["latitude"]
   )
@@ -193,6 +214,7 @@ schools_hash.each do |school|
   attr_list = ["ell_programs", "language_classes", "advancedplacement_courses"]
 
   attr_list.each{ |attr| 
+    puts school[attr]
     if school.has_key? attr
       if school[attr].include?(";") 
         school[attr].split('; ').each{|t| 
@@ -210,6 +232,8 @@ schools_hash.each do |school|
       end
     end
   }
+  
+
   
 end
 
