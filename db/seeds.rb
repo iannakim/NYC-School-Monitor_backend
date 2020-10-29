@@ -151,15 +151,15 @@ schools_hash.each do |school|
     school["school_accessibility_description"] = 0
   end
 
-  if  !school["attendance_rate"]
+  if !school["attendance_rate"]
     school["attendance_rate"] = 0.0
   end
   
-  if !school["extracurricular activities"]
-  school["extracurricular_activities"] = "Information not available at this time. Please check the school website."
+  if !school["extracurricular_activities"]
+    school["extracurricular_activities"] = "Information not available at this time. Please check the school website."
   end
 
-  School.create!(
+  s = School.create!(
     neighborhood_id: Neighborhood.find_by(name: school["neighborhood"]).id,
     name: school["school_name"],
     address: school["primary_address_line_1"],
@@ -185,11 +185,33 @@ schools_hash.each do |school|
     latitude: school["latitude"]
   )
   puts "- created #{school["school_name"]}"
-end
+
+  
 
 # ------------------- Seeding Joiner -------------------------------------------------
 
-schools_hash.
+  attr_list = ["ell_programs", "language_classes", "advancedplacement_courses"]
+
+  attr_list.each{ |attr| 
+    if school.has_key? attr
+      if school[attr].include?(";") 
+        school[attr].split('; ').each{|t| 
+          j = Joiner.create!(option_id: Option.find_by(name: t).id, school_id: s.id)
+          puts "- created Joiner #{j.id}"
+        }
+      elsif school[attr].include?(",") 
+        school[attr].split(', ').each{|t| 
+          j = Joiner.create!(option_id: Option.find_by(name: t).id, school_id: s.id)
+          puts "- created Joiner #{j.id}"
+        }
+      else
+        j = Joiner.create!(option_id: Option.find_by(name: school[attr]).id, school_id: s.id)
+        puts "- created Joiner #{j.id}"
+      end
+    end
+  }
+  
+end
 
 
 
