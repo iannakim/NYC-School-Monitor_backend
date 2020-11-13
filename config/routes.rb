@@ -1,8 +1,9 @@
 Rails.application.routes.draw do
+  resources :saveds
   # resources :joiners
   # resources :options
   # resources :programs
-  # resources :users
+  resources :users
   # resources :reviews
   # resources :schools
   # resources :neighborhoods
@@ -10,7 +11,17 @@ Rails.application.routes.draw do
 
   get "/schools", to: "schools#index"
   get "/keep_logged_in", to: "users#keep_logged_in"
+
   post "/login", to: "users#login"
   post "/signup", to: "users#create"
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+
+  post "/review", to: "reviews#create"
+  patch "/reviews/:id", to: "reviews#update"
+  delete "/reviews/:id", to: "reviews#delete"
+
+
+  post "/save", to: "saveds#create"
+  get "/getSaved", to: "saveds#index"
+  delete "/deleteSaved/:id", to: "saveds#delete"
+
 end

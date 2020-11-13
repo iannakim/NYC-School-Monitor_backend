@@ -242,12 +242,17 @@ end
 # ------------------- Seeding User -------------------------------------------------
 
 
-anna = User.create!(username: "master", password: "abc123", email: "anna@gmail.com", role: "admin")
-cooper = User.create!(username:"cooper", password: "abc123", email: "cooper@gmail.com", role: "student")
-kevin = User.create!(username: "kevin", password: "abc123", email: "kevin@gmail.com", role: "parent")
+anna = User.create!(username: "Master", password: "abc123", email: "anna@gmail.com", role: "Parent")
+cooper = User.create!(username:"Cooper", password: "abc123", email: "cooper@gmail.com", role: "Current Student")
+kevin = User.create!(username: "Kevin", password: "abc123", email: "kevin@gmail.com", role: "Alumni")
+bob = User.create!(username: "Bob", password: "abc123", email: "bob@gmail.com", role: "Teacher")
 
 
+# ------------------ Seeding Review ------------------------------------------------
 
+Review.create!(user_id: 1, school_id: 109, content: "This school is really great")
+Review.create!(user_id: 2, school_id: 109, content: "I went to school 5 years ago and it's a pretty decent school")
+Review.create!(user_id: 3, school_id: 109, content: "I hate this school")
 
 
 puts "🌵🥯🌵🥯 YAY!! 🌵🥯🌵🥯 "
