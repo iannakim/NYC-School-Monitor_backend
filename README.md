@@ -1,24 +1,66 @@
-# README
+# NYC School Monitor
+*Live Demo Coming Soon!*
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+See <a href = "https://github.com/iannakim/NYC-School-Monitor_frontend"> Frontend Repo Here</a>
 
-Things you may want to cover:
+NYC School Monitor is a React/Redux app powered by Rails API backend that allows users to browse through all 400+ New York City public high schools and publish/share reviews based on their experience. 
 
-* Ruby version
+## App Features
+1. Users can sign up as one of the 4 roles: Parent, Current Student, Teacher, or Alumni.
+2. The application focuses on inseminating important information regarding each school such as:
+     * General Info (School overview, grades, address, start-time/end-time)
+     * Building Accessibility
+     * Graduation rate
+     * Attendance rate
+     * Available ELL Programs
+     * Foreign Language Subjects
+     * AP Courses offered
+     * Extracurricular Activities & Clubs
+     * Transportation Methods
 
-* System dependencies
+3. Users can utilize the search bar to filter specific schools and see the exact location of the school via google map on the main page.
+4. Full CRUD Operation on *School Reviews* (publish, update, and remove) *Saved Schools* List.
 
-* Configuration
+## Tech Stack
+ * Ruby [2.6.1]
+ * Rails [6.0.3.2]
+ * NYC Open Data API
+ * Google Maps API
+ * PostgreSQL
+ * Active Record
+ * Rack Cors
+ * Active Model Serializer
+ * BCrypt + JWT
+ * Semantic UI
+ * HTML/CSS
 
-* Database creation
+## Set Up
+  -- part 1--
+   * clone this repo and the <a href = "https://github.com/iannakim/NYC-School-Monitor_frontend"> froentend repo </a> into your local environment
+   * cd into this *backend* repository you just cloned and run 'bundle install' to install all gems and dependencies
+   * run 'rails db:create' to create the database for the first time (or try 'rails db:reset')
+   * run 'rails db:migrate' to create the tables
+   * run 'rails db:seed' to seed data for our server
+   * run 'rails s' to start the server
+   
+ -- part 2 --
+   * open up another terminal and cd into the  <a href = "https://github.com/iannakim/NYC-School-Monitor_frontend">*frontend* </a> repo that you've cloned
+   * run 'npm install' to aquire all dependencies
+   * run 'npm start' to open up your browser and see the application
 
-* Database initialization
+## Sample Images 📷
+*coming soon*
 
-* How to run the test suite
+## Domain Model
+*coming soon*
 
-* Services (job queues, cache servers, search engines, etc.)
+## For Future Improvements
+ * Implement different language versions [Spanish, Korean, Chinese, Polish, Arabic, Etc]
+ * Add info window on map markers
+ * User profile page to see all posted reviews
 
-* Deployment instructions
+## Known Issues
+Please see issues
 
-* ...
+## Creator
+ * [Anna Kim](https://github.com/iannakim) <a href = "https://www.linkedin.com/in/devannakim/"> Let's Connect</a>!  👋🏻
