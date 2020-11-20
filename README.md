@@ -6,7 +6,12 @@ See <a href = "https://github.com/iannakim/NYC-School-Monitor_frontend"> Fronten
 NYC School Monitor is a React/Redux app powered by Rails API backend that allows users to browse through all 400+ New York City public high schools and publish/share reviews based on their experience. 
 
 ## App Features
-1. Users can sign up as one of the 4 roles: Parent, Current Student, Teacher, or Alumni.
+1. Users can sign up as one of the 4 roles: 
+     * Parent
+     * Current Student
+     * Teacher
+     * Alumni
+     
 2. The application focuses on inseminating important information regarding each school such as:
      * General Info (School overview, grades, address, start-time/end-time)
      * Building Accessibility
@@ -36,7 +41,7 @@ NYC School Monitor is a React/Redux app powered by Rails API backend that allows
 
 ## Set Up
   -- part 1--
-   * clone this repo and the <a href = "https://github.com/iannakim/NYC-School-Monitor_frontend"> froentend repo </a> into your local environment
+   * clone this repo and the <a href = "https://github.com/iannakim/NYC-School-Monitor_frontend"> frontend repo </a> into your local environment
    * cd into this *backend* repository you just cloned and run 'bundle install' to install all gems and dependencies
    * run 'rails db:create' to create the database for the first time (or try 'rails db:reset')
    * run 'rails db:migrate' to create the tables
@@ -44,7 +49,7 @@ NYC School Monitor is a React/Redux app powered by Rails API backend that allows
    * run 'rails s' to start the server
    
  -- part 2 --
-   * open up another terminal and cd into the  <a href = "https://github.com/iannakim/NYC-School-Monitor_frontend">*frontend* </a> repo that you've cloned
+   * open up another terminal and cd into the  <a href = "https://github.com/iannakim/NYC-School-Monitor_frontend">frontend </a> repo that you've cloned
    * run 'npm install' to aquire all dependencies
    * run 'npm start' to open up your browser and see the application
 
