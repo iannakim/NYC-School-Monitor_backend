@@ -12,7 +12,7 @@ NYC School Monitor is a React/Redux app powered by Rails API backend that allows
      * Teacher
      * Alumni
      
-2. The application focuses on inseminating important information regarding each school such as:
+2. Users have access to the following important information on each school:
      * General Info (School overview, grades, address, start-time/end-time)
      * Building Accessibility
      * Graduation rate
