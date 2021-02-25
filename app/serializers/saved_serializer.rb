@@ -1,5 +1,4 @@
 class SavedSerializer < ActiveModel::Serializer
-  attributes :id, :school, :user
-  has_one :user
+  attributes :id, :school
   has_one :school
 end
