@@ -7,7 +7,7 @@ class UsersController < ApplicationController
         render json: @users
     end
     
-
+    # find the user and if that user exists and the password matches, create a unique token for the user and send it back
     def login
         @user = User.find_by(username: params[:username])
         if @user && @user.authenticate(params[:password])

@@ -11,7 +11,7 @@ class SavedsController < ApplicationController
     render json: @saved
   end
 
-
+  # when a user saves a school, create a saved object attached to that user
   def create
     @saved = @user.saveds.create(saved_params)
     render json: @saved

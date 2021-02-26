@@ -74,6 +74,7 @@ program_hash = {}
 option_hash = {}
 option_program_hash = {}
 
+
 programlist = ["ell_programs", "advancedplacement_courses", "language_classes"]
 
 programlist.uniq.each do |pro|

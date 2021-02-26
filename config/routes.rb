@@ -1,14 +1,9 @@
 Rails.application.routes.draw do
+  # RESTful routing [all actions and HTTP methods]
   resources :saveds
-  # resources :joiners
-  # resources :options
-  # resources :programs
   resources :users
-  # resources :reviews
-  # resources :schools
-  # resources :neighborhoods
-  # resources :boroughs
 
+  #custom routes
   get "/schools", to: "schools#index"
   get "/keep_logged_in", to: "users#keep_logged_in"
 
