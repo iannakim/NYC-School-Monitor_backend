@@ -1,3 +1,4 @@
+Saved.delete_all
 Joiner.delete_all
 Option.delete_all
 Program.delete_all
@@ -7,6 +8,7 @@ School.delete_all
 Neighborhood.delete_all
 Borough.delete_all
 
+Saved.reset_pk_sequence
 Joiner.reset_pk_sequence
 Option.reset_pk_sequence
 Program.reset_pk_sequence
@@ -74,7 +76,7 @@ program_hash = {}
 option_hash = {}
 option_program_hash = {}
 
-
+#program is hardcoded with just three items
 programlist = ["ell_programs", "advancedplacement_courses", "language_classes"]
 
 programlist.uniq.each do |pro|
@@ -86,6 +88,9 @@ puts program_hash
 
 
 # ------------------ Seeding Option (that belongs to a specific program) ---------------------
+
+# if the school has ell, ap, lang programs, (not empty), split the strings and save as an array of elements.
+# Grab each item and save them as options under that specific program.
 
 schools_hash.each do |school|
   if school["ell_programs"] != ""
@@ -145,6 +150,8 @@ end
 
 
 # ------------------- Seeding School -------------------------------------------------
+
+# replacing empty strings or null values with default values
 
 schools_hash.each do |school|
 
@@ -247,13 +254,14 @@ anna = User.create!(username: "Master", password: "abc123", email: "anna@gmail.c
 cooper = User.create!(username:"Cooper", password: "abc123", email: "cooper@gmail.com", role: "Current Student")
 kevin = User.create!(username: "Kevin", password: "abc123", email: "kevin@gmail.com", role: "Alumni")
 bob = User.create!(username: "Bob", password: "abc123", email: "bob@gmail.com", role: "Teacher")
-
+jessica = User.create!(username: "Jessica", password: "abc123", email: "jessica@gmail.com", role: "Teacher")
 
 # ------------------ Seeding Review ------------------------------------------------
 
-Review.create!(user_id: 1, school_id: 109, content: "This school is really great")
-Review.create!(user_id: 2, school_id: 109, content: "I went to school 5 years ago and it's a pretty decent school")
-Review.create!(user_id: 3, school_id: 109, content: "I hate this school")
-
+Review.create!(user_id: 1, school_id: 107, content: "My daughter attends this school and it's a quite nice school with supportive teachers. She loves all of her teachers and they help her with so many things like choosing college options, filling out for scholarships and etc. I only wish they didn't start so early at 7am.")
+Review.create!(user_id: 2, school_id: 107, content: "The hallway is so dull. I wish we had lockers like other schools do. I have to carry all of my books to every class and they get very heavy. The teachers are alright, most care about you doing well and some are just blah. We have weekly tests for Math and Science which sucks. Wish we had a bigger basketball court.")
+Review.create!(user_id: 3, school_id: 107, content: "I graduated from this school 10 years ago and the last time I visited, some of my favorite teachers have retired already. Great memories made here. Learned a lot and back then there were few gangs in the area but the teachers and the school staff made sure everyone was safe at all times. Wish they upgraded the gym and the library though.")
+Review.create!(user_id: 4, school_id: 107, content: "I've been teaching at this school for 18 years. Great students who come from diverse backgrounds and the teachers are very passionate to make a difference here. Administration is all new and so they like to poke around and implement lots of changes which can be good if done the right way. Wish budgeting was better so we can buy new books for kids.")
+Review.create!(user_id: 5, school_id: 107, content: "Wow, I'm a new teacher here (less than 2 years) and there is a lot of work to be done here. The teachers are amazing and loves what they do however the curriculum is so old and a lot of the faculty are not tech savvy. Good support system from the department but each runs very independently from another. There is definitely a room for growth here.")
 
 puts "🌵🥯🌵🥯 YAY!! 🌵🥯🌵🥯 "
